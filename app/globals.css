@@ -1,0 +1,83 @@
+@import "tailwindcss"; /* Single import for Tailwind v4 */
+
+@font-face {
+  font-family: 'ChironSungHK';
+  src: url('/ChironSungHK-Noto-lshk.woff') format('woff'); /* Assuming font is in /public */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Use swap for better performance */
+}
+@font-face {
+  font-family: 'ChironHeiHK';
+  src: url('/ChironHeiHK-lshk.woff') format('woff'); /* Assuming font is in /public */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Use swap for better performance */
+}
+
+:root {
+  --background: white;
+  --foreground: #171717;
+  --font-chiron: 'ChironHeiHK', sans-serif; /* Define CSS variable */
+}
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+} */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Explicitly apply ChironSungHK font when .font-chiron class is used */
+/* This acts as a fallback/diagnostic if Tailwind utility generation fails */
+.font-chiron {
+  font-family: 'ChironHeiHK', sans-serif;
+}
+
+/* Add styles for MDX tables */
+article table {
+  @apply border-collapse border border-black my-4; /* Full width, collapse borders, add black border, margin */
+}
+
+article th,
+article td {
+  @apply border border-black px-4 py-2 text-left; /* Add black border, padding, left-align text */
+}
+
+article th {
+  @apply bg-neutral-100 dark:bg-neutral-800 font-semibold; /* Add background color and bold font for headers */
+}
+
+/* Add styles for MDX lists */
+article ul {
+  @apply list-disc list-inside my-4 space-y-2 pl-4; /* Disc bullets, inside position, vertical margin, space between items, left padding */
+}
+
+article ol {
+  @apply list-decimal list-inside my-4 space-y-2 pl-4; /* Decimal numbers, inside position, vertical margin, space between items, left padding */
+}
+
+article li {
+  @apply mb-1; /* Small margin below each list item */
+}
+
+article p {
+  margin: 1rem 0; /* Remove default margin */
+}
+
+article *:not(div) a {
+  @apply text-blue-500 hover:text-blue-700; /* Blue color for links, darker on hover */
+  text-decoration: underline; /* Underline links */
+}
