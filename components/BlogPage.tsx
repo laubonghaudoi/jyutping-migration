@@ -71,7 +71,7 @@ const BlogPage: React.FC<BlogPageProps> = async ({ locale }) => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold my-8">{t.title}</h1>
+      <h1 className="text-4xl font-bold my-8">{t.title}</h1>
       {posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {posts.map((post) => (

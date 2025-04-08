@@ -9,33 +9,22 @@ import React from "react"; // Import React
 import rehypeRaw from "rehype-raw"; // Import rehype-raw
 import remarkGfm from "remark-gfm"; // Re-import remark-gfm
 
-// Import custom components used in MDX
+import AboutPage from "@/components/AboutPage"; // Import generic About page
 import Alert from "@/components/Alert";
 import Audio from "@/components/Audio";
+import BlogPage from "@/components/BlogPage"; // Import generic Blog page
 import Chartaudio from "@/components/Chartaudio";
+import JyutpingPage from "@/components/JyutpingPage"; // Import generic Jyutping page
 import Ruby from "@/components/Ruby"; // Import the new Ruby component
 import SampleText from "@/components/SampleText"; // Import the SampleText component
 import TableOfContents from "@/components/TableOfContents"; // Import the TOC component
-import AboutPage from "@/components/AboutPage"; // Import generic About page
 import CmnIndexPage from "@/components/index-pages/CmnIndexPage";
-import CmnJyutpingPage from "@/components/index-pages/CmnJyutpingPage"; // Import Cmn Jyutping page component
-import CmnKeyboardPage from "@/components/index-pages/CmnKeyboardPage";
 import EnIndexPage from "@/components/index-pages/EnIndexPage";
-import EnJyutpingPage from "@/components/index-pages/EnJyutpingPage";
-import EnKeyboardPage from "@/components/index-pages/EnKeyboardPage";
 import NanIndexPage from "@/components/index-pages/NanIndexPage";
-import NanJyutpingPage from "@/components/index-pages/NanJyutpingPage"; // Import Nan Jyutping page component
-import NanKeyboardPage from "@/components/index-pages/NanKeyboardPage";
 import ViIndexPage from "@/components/index-pages/ViIndexPage";
-import ViJyutpingPage from "@/components/index-pages/ViJyutpingPage"; // Import the new Vi Jyutping page component
-import ViKeyboardPage from "@/components/index-pages/ViKeyboardPage";
 import WuuIndexPage from "@/components/index-pages/WuuIndexPage";
-import WuuJyutpingPage from "@/components/index-pages/WuuJyutpingPage"; // Import the new Wuu Jyutping page component
-import WuuKeyboardPage from "@/components/index-pages/WuuKeyboardPage";
-import BlogPage from "@/components/BlogPage"; // Import generic Blog page
 import YueIndexPage from "@/components/index-pages/YueIndexPage";
-import YueJyutpingPage from "@/components/index-pages/YueJyutpingPage";
-import YueKeyboardPage from "@/components/index-pages/YueKeyboardPage";
+import KeyboardPage from "@/components/KeyboardPage"; // Import generic Keyboard page
 // Import other components like table renderers if created
 
 const contentDir = path.join(process.cwd(), "_content");
@@ -204,7 +193,7 @@ export async function generateMetadata({
         return { title: "粤拼", description: "通行粤语拼音方案" };
       case "nan":
         return {
-          title: "粵拼 (Nan)",
+          title: "粵拼",
           description: "標準粵語拼音方案",
         }; // Placeholder
       case "vi":
@@ -214,7 +203,7 @@ export async function generateMetadata({
         }; // Placeholder
       case "wuu":
         return {
-          title: "粤拼 (Wuu)",
+          title: "粤拼",
           description: "標準粵語拼音方案",
         }; // Placeholder
       default:
@@ -380,35 +369,19 @@ export default async function Page({ params }: PageAndMetadataProps) {
   }
 
   // --- Specific Page Component Rendering ---
-  // Check for the specific /yue/jyutping route
+  // Check for the specific /jyutping route
   if (slug && slug.length === 1 && slug[0] === "jyutping") {
     // Render the full-width title block first, then the content grid
-    let jyutpingPage: React.ReactNode;
-    if (locale === "yue") {
-      jyutpingPage = <YueJyutpingPage />;
-    } else if (locale === "en") {
-      jyutpingPage = <EnJyutpingPage />;
-    } else if (locale === "vi") {
-      jyutpingPage = <ViJyutpingPage />;
-    } else if (locale === "wuu") {
-      jyutpingPage = <WuuJyutpingPage />;
-    } else if (locale === "nan") {
-      jyutpingPage = <NanJyutpingPage />;
-    } else if (locale === "cmn") {
-      jyutpingPage = <CmnJyutpingPage />;
-    } else {
-      // Fallback or error handling if needed for other locales hitting this path unexpectedly
-      return <div>Jyutping page not available for this locale yet.</div>;
-    }
-
     return (
       <>
         {/* Full-width title block */}
-        <div className="bg-[#1678d3] text-white py-6 -mx-4 px-4 mb-6">
-          <h1 className="font-chiron my-4 text-6xl text-center container max-w-8xl mx-auto">
+        <div className="bg-[#1678d3] text-white py-6 px-4 mb-6">
+          {/* Responsive H1 with increased line spacing */}
+          <h1 className="font-chiron my-4 text-5xl md:text-6xl leading-relaxed text-center container max-w-8xl mx-auto">
             粵拼：香港語言學學會粵語拼音方案
           </h1>
-          <h1 className="chiron-font my-8 text-4xl text-center container max-w-8xl mx-auto">
+          {/* Responsive H1 with increased line spacing */}
+          <h1 className="chiron-font my-8 text-3xl md:text-4xl text-center container max-w-8xl mx-auto">
             Jyutping: The Linguistic Society of Hong Kong <br /> Cantonese
             Romanization Scheme
           </h1>
@@ -421,7 +394,7 @@ export default async function Page({ params }: PageAndMetadataProps) {
 
           {/* Main content column */}
           <article className="col-span-10 lg:col-span-7">
-            {jyutpingPage}
+            <JyutpingPage locale={locale} /> {/* Use generic component */}
           </article>
 
           {/* TOC column */}
@@ -452,33 +425,14 @@ export default async function Page({ params }: PageAndMetadataProps) {
 
   // --- Specific Page Component Rendering for /keyboard ---
   if (slug && slug.length === 1 && slug[0] === "keyboard") {
-    let KeyboardPageComponent: React.FC | null = null;
-    if (locale === "yue") {
-      KeyboardPageComponent = YueKeyboardPage;
-    } else if (locale === "en") {
-      KeyboardPageComponent = EnKeyboardPage;
-    } else if (locale === "vi") {
-      KeyboardPageComponent = ViKeyboardPage;
-    } else if (locale === "wuu") {
-      KeyboardPageComponent = WuuKeyboardPage;
-    } else if (locale === "nan") {
-      KeyboardPageComponent = NanKeyboardPage;
-    } else if (locale === "cmn") {
-      KeyboardPageComponent = CmnKeyboardPage;
-    }
-
-    if (KeyboardPageComponent) {
-      // Apply container constraints similar to About page
-      return (
-        <div className="container mx-auto max-w-6xl px-4 py-8">
-          <article>
-            <KeyboardPageComponent />
-          </article>
-        </div>
-      );
-    }
-    // Fallback if component not found
-    return <div>Keyboard page not available for this locale yet.</div>;
+    // Use the new generic KeyboardPage component, passing the locale
+    return (
+      <div className="container mx-auto max-w-6xl px-4 py-8">
+        <article>
+          <KeyboardPage locale={locale} />
+        </article>
+      </div>
+    );
   }
 
   // --- Specific Page Component Rendering for /blog ---
@@ -508,7 +462,7 @@ export default async function Page({ params }: PageAndMetadataProps) {
       <div className="grid grid-cols-10 px-4 py-8">
         <article className="w-full col-span-9">
           {content.frontmatter.title && slug !== undefined && (
-            <h1 className="text-3xl font-bold my-4">
+            <h1 className="text-3xl font-bold my-8">
               {content.frontmatter.title}
             </h1>
           )}

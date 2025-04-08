@@ -14,10 +14,10 @@ const CmnIndexPage: React.FC = () => {
   return (
     <>
       <h1 className="font-chiron text-8xl my-32 mx-auto text-center">粵拼</h1>
-      <p className="font-chiron text-4xl my-8 mx-auto text-center">
+      <p className="font-chiron leading-relaxed text-4xl my-8 mx-auto text-center">
         簡單合理 易學易用
       </p>
-      <p className="font-chiron text-4xl mx-auto text-center">
+      <p className="font-chiron leading-relaxed text-4xl mx-auto text-center">
         通行粵語拼音方案
       </p>
 

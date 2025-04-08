@@ -3,7 +3,7 @@ import Link from "next/link"; // Import Link component
 // Removed Geist imports as they are unused here
 import "@/app/globals.css"; // Use import alias and correct path
 import LanguageSwitcher from "@/components/LanguageSwitcher"; // Import the switcher
-import { IconBrandGithub } from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandX, IconMail } from "@tabler/icons-react";
 import type React from "react"; // Added React import for type usage
 
 // Define a type for the resolved params shape for Layout
@@ -124,14 +124,48 @@ export default async function RootLayout({
       <main className="flex-grow">{children}</main>
 
       {/* Simple Footer Placeholder */}
-      <footer className="p-8 bg-gray-600  text-center text-white">
-        <span>© {new Date().getFullYear()} jyutping.org</span>
-        <Link
-          className="mx-auto text-center w-full"
-          href="https://github.com/CanCLID/jyutping.org"
-        >
-          <IconBrandGithub />
-        </Link>
+      <footer className="p-8 bg-gray-600 text-center text-white">
+        {/* Copyright text on the first row */}
+        <div className="my-2">
+          {/* Add margin-bottom for spacing */}
+          <span>{`© ${new Date().getFullYear()} jyutping.org`}</span>
+        </div>
+
+        {/* Icons on the second row, centered */}
+        <div className="my-2 inline-flex items-center justify-center space-x-4">
+          <Link
+            href="https://github.com/CanCLID/jyutping.org"
+            target="_blank" // Open in new tab
+            rel="noopener noreferrer" // Security best practice
+            className="text-white hover:opacity-80" // Style the link
+          >
+            <IconBrandGithub size={20} /> {/* GitHub Icon */}
+          </Link>
+          <Link
+            href="mailto:support@jyutping.org"
+            target="_blank" // Open in new tab
+            rel="noopener noreferrer" // Security best practice
+            className="text-white hover:opacity-80" // Style the link
+          >
+            <IconMail size={20} /> {/* GitHub Icon */}
+          </Link>
+          <Link
+            href="https://huggingface.co/CanCLID"
+            target="_blank" // Open in new tab
+            rel="noopener noreferrer" // Security best practice
+            className="text-white hover:opacity-80" // Style the link
+          >
+            🤗
+          </Link>
+          <Link
+            href="https://x.com/Can_CLID"
+            target="_blank" // Open in new tab
+            rel="noopener noreferrer" // Security best practice
+            className="text-white hover:opacity-80" // Style the link
+          >
+            <IconBrandX size={20} />
+          </Link>
+        </div>
       </footer>
     </>
   );
