@@ -14,6 +14,10 @@ const config: Config = {
         mono: ["var(--font-geist-mono)"],
         chiron: ["ChironSungHK", "sans-serif"], // Use font name directly as defined in @font-face
       },
+      colors: {
+        // Define custom primary color using RGB values
+        primary: "#1678d3", // Example primary color
+      },
       // Add other theme extensions here if needed
     },
   },

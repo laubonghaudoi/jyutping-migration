@@ -1,20 +1,19 @@
-import Alert from "@/components/Alert"; // Assuming Alert component path
-import Audio from "@/components/Audio"; // Assuming Audio component path
-import Chartaudio from "@/components/Chartaudio"; // Assuming Chartaudio component path
+import Alert from "@/components/Alert";
+import Audio from "@/components/Audio";
+import Chartaudio from "@/components/Chartaudio";
 import type React from "react";
 
-const YueJyutpingPage: React.FC = () => {
+const WuuJyutpingPage: React.FC = () => {
   return (
     <>
-      <p className="text-lg mb-6 font-semibold">
-        「香港語言學學會粵語拼音方案」，簡稱「粵拼」。
-      </p>
+      {/* Note: The introductory paragraph from MDX frontmatter is usually handled in the main page/layout */}
+      {/* description: 「香港語言學學會粵語拼音方案」，略稱「粵拼」。 */}
 
       <Chartaudio />
 
       <Alert title="關於 IPA 轉寫">
         <p>
-          本頁面所用國際音標轉寫皆係寬式轉寫，錄音數據來源係粵典。詳情請見
+          本葉面用个國際音標轉寫全是寬式轉寫，錄音數據來自粵典。具體請參
           <a href="#references" className="text-blue-600 hover:underline">
             參考文獻
           </a>
@@ -26,6 +25,7 @@ const YueJyutpingPage: React.FC = () => {
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
+          {/* Using styles from YueJyutpingPage for consistency */}
           <thead>
             <tr>
               <th className="tg-50s5 border p-2"> </th>
@@ -131,7 +131,7 @@ const YueJyutpingPage: React.FC = () => {
       </div>
 
       <Alert>
-        <p>零聲母唔用字母做標記，例如「呀」只拼作 aa。</p>
+        <p>零聲母弗用字母做標記，譬方「呀」單單是 aa。</p>
       </Alert>
 
       <h2 className="text-3xl font-semibold mt-8 mb-4">2. 鼻音單獨成韻</h2>
@@ -214,6 +214,7 @@ const YueJyutpingPage: React.FC = () => {
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
+          {/* Added thead bg-transparent based on YueJyutpingPage */}
           <thead className="bg-transparent">
             <tr className="bg-transparent">
               <th className="border p-2">爆發音</th>
@@ -258,6 +259,7 @@ const YueJyutpingPage: React.FC = () => {
       <h3 className="text-2xl font-semibold mt-6 mb-3">3.3 韻母表</h3>
 
       <div className="overflow-x-auto">
+        {/* Added text-xs based on YueJyutpingPage */}
         <table className="tg my-4 border border-collapse border-gray-300 text-xs">
           <thead>
             <tr>
@@ -275,6 +277,7 @@ const YueJyutpingPage: React.FC = () => {
                 爆發音韻尾（入聲韻）
               </th>
             </tr>
+            {/* Added second header row based on YueJyutpingPage */}
             <tr>
               <td className="tg-solh border p-1">-</td>
               <td className="tg-solh border p-1">-i</td>
@@ -297,6 +300,7 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 i 思 <Audio id="si1" />
               </td>
+              {/* Added bg-gray-300 based on YueJyutpingPage */}
               <td className="tg-dgfm border p-1 bg-gray-300"> </td>
               <td className="tg-ssw7 border p-1">
                 iu 消 <Audio id="siu1" />
@@ -466,6 +470,7 @@ const YueJyutpingPage: React.FC = () => {
                 oeng 疆 <Audio id="goeng1" />
               </td>
               <td className="tg-ssw7 border p-1"> </td>
+              {/* Added bg-yellow-100 based on YueJyutpingPage */}
               <td className="tg-7gzb border p-1 bg-yellow-100">
                 oet <Audio id="oet6" />
               </td>
@@ -517,6 +522,7 @@ const YueJyutpingPage: React.FC = () => {
             <tr>
               <td className="tg-i8xi border p-1">a</td>
               <td className="tg-cdar border p-1">[ɐ]</td>
+              {/* Added bg-yellow-100 based on YueJyutpingPage */}
               <td className="tg-7gzb border p-1 bg-yellow-100">
                 a 嘞 <Audio id="la3" />
               </td>
@@ -582,14 +588,14 @@ const YueJyutpingPage: React.FC = () => {
 
       <Alert color="secondary">
         <p>
-          <strong>a</strong> 同 <strong>oet</strong> 於 2018 年新增。詳情請睇
+          <strong>a</strong> 搭 <strong>oet</strong> 是 2018 年新增。具體請參
           <a
             href="https://e40058f5-5f04-4db7-8d70-4650bee22b88.filesusr.com/ugd/508b98_8bead2fef24f46e79eba9bc86faf3075.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
           >
-            呢度
+            此地
           </a>
           。
         </p>
@@ -645,7 +651,7 @@ const YueJyutpingPage: React.FC = () => {
       </div>
 
       <Alert>
-        <p>聲調標喺音節後面。</p>
+        <p>聲調標在音節後。</p>
         <p>
           <strong>示例：</strong>
           fu1 （夫），fu2 （虎）, fu3 （副）, fu4 （扶）, fu5 （婦）, fu6 （父）
@@ -655,6 +661,7 @@ const YueJyutpingPage: React.FC = () => {
       <h2 id="references" className="text-3xl font-semibold mt-8 mb-4">
         參考文獻
       </h2>
+      {/* Added prose styles based on YueJyutpingPage */}
       <div className="prose dark:prose-invert max-w-none text-sm space-y-2">
         <p>
           Bauer, Robert S., and Paul K. Benedict. 2011.{" "}
@@ -702,4 +709,4 @@ const YueJyutpingPage: React.FC = () => {
   );
 };
 
-export default YueJyutpingPage;
+export default WuuJyutpingPage;

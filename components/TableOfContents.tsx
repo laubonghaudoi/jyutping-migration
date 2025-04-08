@@ -94,12 +94,7 @@ const TableOfContents: React.FC = () => {
   }
 
   return (
-    // Sticky container for the TOC
-    // Adjust top-[value] based on your header height
-    // Added w-64 for width, adjust as needed
-    // Added ml-8 for margin from the main content
-    // Removed h-screen and overflow-y-auto as the parent aside handles this
-    <nav className="w-64 ml-8 hidden lg:block">
+    <nav className="w-64 ml-8 hidden lg:block sticky top-16">
       <ul>
         {headings.map((heading) => (
           <li

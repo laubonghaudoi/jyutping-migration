@@ -16,14 +16,26 @@ import Chartaudio from "@/components/Chartaudio";
 import Ruby from "@/components/Ruby"; // Import the new Ruby component
 import SampleText from "@/components/SampleText"; // Import the SampleText component
 import TableOfContents from "@/components/TableOfContents"; // Import the TOC component
+import AboutPage from "@/components/AboutPage"; // Import generic About page
 import CmnIndexPage from "@/components/index-pages/CmnIndexPage";
+import CmnJyutpingPage from "@/components/index-pages/CmnJyutpingPage"; // Import Cmn Jyutping page component
+import CmnKeyboardPage from "@/components/index-pages/CmnKeyboardPage";
 import EnIndexPage from "@/components/index-pages/EnIndexPage";
+import EnJyutpingPage from "@/components/index-pages/EnJyutpingPage";
+import EnKeyboardPage from "@/components/index-pages/EnKeyboardPage";
 import NanIndexPage from "@/components/index-pages/NanIndexPage";
+import NanJyutpingPage from "@/components/index-pages/NanJyutpingPage"; // Import Nan Jyutping page component
+import NanKeyboardPage from "@/components/index-pages/NanKeyboardPage";
 import ViIndexPage from "@/components/index-pages/ViIndexPage";
+import ViJyutpingPage from "@/components/index-pages/ViJyutpingPage"; // Import the new Vi Jyutping page component
+import ViKeyboardPage from "@/components/index-pages/ViKeyboardPage";
 import WuuIndexPage from "@/components/index-pages/WuuIndexPage";
-// Import all index page components
+import WuuJyutpingPage from "@/components/index-pages/WuuJyutpingPage"; // Import the new Wuu Jyutping page component
+import WuuKeyboardPage from "@/components/index-pages/WuuKeyboardPage";
+import BlogPage from "@/components/BlogPage"; // Import generic Blog page
 import YueIndexPage from "@/components/index-pages/YueIndexPage";
-import YueJyutpingPage from "@/components/index-pages/YueJyutpingPage"; // Import the new Jyutping page component
+import YueJyutpingPage from "@/components/index-pages/YueJyutpingPage";
+import YueKeyboardPage from "@/components/index-pages/YueKeyboardPage";
 // Import other components like table renderers if created
 
 const contentDir = path.join(process.cwd(), "_content");
@@ -54,6 +66,12 @@ const components = {
   ),
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3 className="text-xl font-semibold my-6" {...props} /> // Added h3 styling
+  ),
+  h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 className="text-lg font-semibold my-6" {...props} /> // Added h3 styling
+  ),
+  h5: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 className="font-semibold my-6" {...props} /> // Added h3 styling
   ),
   // Removed custom 'p' component mapping to avoid double nesting causing hydration errors.
   // Style paragraphs globally via CSS if needed (e.g., in globals.css targeting 'article p').
@@ -152,13 +170,23 @@ async function getPageContent(locale: string, slug: string[] | undefined) {
   }
 }
 
+// Define a type for the resolved params shape
+type ResolvedParams = {
+  locale: string;
+  slug: string[] | undefined;
+};
+
+// Define a type for the props passed to Page and generateMetadata
+type PageAndMetadataProps = {
+  params: Promise<ResolvedParams>; // Params is a Promise
+};
+
 // --- Generate Metadata (Optional but Recommended) ---
 export async function generateMetadata({
   params,
-}: {
-  params: { locale: string; slug: string[] | undefined };
-}): Promise<Metadata> {
-  const awaitedParams = await params; // Await params
+}: PageAndMetadataProps): Promise<Metadata> {
+  // Use the defined type
+  const awaitedParams = await params; // Await the Promise
   const { locale, slug } = awaitedParams; // Destructure awaited params
 
   // Handle metadata for index pages
@@ -170,14 +198,14 @@ export async function generateMetadata({
       case "en":
         return {
           title: "Jyutping",
-          description: "The Common Cantonese Romanization Scheme",
+          description: "The Standard Cantonese Romanization Scheme",
         };
       case "cmn":
         return { title: "粤拼", description: "通行粤语拼音方案" };
       case "nan":
         return {
           title: "粵拼 (Nan)",
-          description: "Placeholder Nan Description",
+          description: "標準粵語拼音方案",
         }; // Placeholder
       case "vi":
         return {
@@ -187,32 +215,142 @@ export async function generateMetadata({
       case "wuu":
         return {
           title: "粤拼 (Wuu)",
-          description: "Placeholder Wuu Description",
+          description: "標準粵語拼音方案",
         }; // Placeholder
       default:
         return { title: "Jyutping Index" }; // Fallback for unknown index locale
     }
   }
 
-  // For non-index pages, fetch content and use frontmatter
+  // --- Specific Metadata for Migrated Pages ---
+  // Check for the specific /yue/jyutping or /en/jyutping route
+  if (slug && slug.length === 1 && slug[0] === "jyutping") {
+    if (locale === "yue") {
+      return {
+        title: "LSHK 粵拼方案", // Or a more specific title if available
+        description: "香港語言學學會粵語拼音方案",
+      };
+    }
+    if (locale === "en") {
+      return {
+        title: "LSHK Jyutping Scheme", // Or a more specific title if available
+        description:
+          "The Linguistic Society of Hong Kong Cantonese Romanization Scheme",
+      };
+    }
+    if (locale === "vi") {
+      return {
+        title: "LSHK Phương pháp Việt bính", // Or a more specific title
+        description:
+          "Phương pháp phiên âm tiếng Quảng Đông của Hội học thuật ngôn ngữ học Hồng Kông",
+      };
+    }
+    if (locale === "wuu") {
+      return {
+        title: "LSHK 粤拼方案", // Or a more specific title
+        description: "香港语言学学会粤语拼音方案", // Placeholder description
+      };
+    }
+    if (locale === "nan") {
+      return {
+        title: "LSHK 粵拼方案", // Or a more specific title
+        description: "香港語言學學會粵語拼音方案", // Placeholder description
+      };
+    }
+    if (locale === "cmn") {
+      return {
+        title: "LSHK 粤拼方案", // Or a more specific title
+        description: "香港语言学学会粤语拼音方案", // Placeholder description
+      };
+    }
+    // Add other locales if they also have migrated jyutping pages
+  }
+
+  // Check for the specific /about route
+  if (slug && slug.length === 1 && slug[0] === "about") {
+    // Provide metadata for about pages based on locale
+    switch (locale) {
+      case "yue":
+        return { title: "關於", description: "關於 Jyutping.org" };
+      case "en":
+        return { title: "About", description: "About Jyutping.org" };
+      case "cmn":
+        return { title: "关于", description: "关于 Jyutping.org" };
+      case "nan":
+        return { title: "關於", description: "關於 Jyutping.org" };
+      case "vi":
+        return { title: "Liên lạc", description: "Về Jyutping.org" };
+      case "wuu":
+        return { title: "关于", description: "关于 Jyutping.org" };
+      default:
+        return { title: "關於" };
+    }
+  }
+
+  // Check for the specific /keyboard route
+  if (slug && slug.length === 1 && slug[0] === "keyboard") {
+    // Provide metadata for keyboard pages based on locale
+    switch (locale) {
+      case "yue":
+        return { title: "粵語輸入法", description: "粵語輸入法工具" };
+      case "en":
+        return {
+          title: "Cantonese Keyboard",
+          description: "Cantonese Keyboard Tools",
+        };
+      case "cmn":
+        return { title: "粤语输入法", description: "粤语输入法工具" };
+      case "nan":
+        return { title: "粵語輸入法 (Nan)", description: "粵語輸入法工具" };
+      case "vi":
+        return {
+          title: "Bàn phím tiếng Quảng Đông",
+          description: "Công cụ bàn phím tiếng Quảng Đông",
+        };
+      case "wuu":
+        return { title: "粤语输入法 (Wuu)", description: "粤语输入法工具" };
+      default:
+        return { title: "Keyboard" }; // Fallback
+    }
+  }
+
+  // Check for the specific /blog route
+  if (slug && slug.length === 1 && slug[0] === "blog") {
+    switch (locale) {
+      case "yue":
+        return { title: "文集", description: "Jyutping.org 文集" };
+      case "en":
+        return { title: "Blog", description: "Jyutping.org Blog" };
+      case "cmn":
+        return { title: "文集", description: "Jyutping.org 文集" };
+      case "nan":
+        return { title: "文集 (Nan)", description: "Jyutping.org 文集" };
+      case "vi":
+        return { title: "Tập văn", description: "Jyutping.org Tập văn" };
+      case "wuu":
+        return { title: "文集 (Wuu)", description: "Jyutping.org 文集" };
+      default:
+        return { title: "Blog" }; // Fallback
+    }
+  }
+
+  // --- Default Metadata Fetching ---
+  // For other non-index pages, fetch content and use frontmatter
   const content = await getPageContent(locale, slug);
   if (!content) {
-    return { title: "Page Not Found" };
+    return { title: "Page Not Found" }; // Keep this fallback
   }
   return {
-    title: content.frontmatter.title || "Jyutping",
-    description: content.frontmatter.description || "Jyutping",
+    title: content.frontmatter.title || "粵拼 Jyutping",
+    description: content.frontmatter.description || "粵拼 Jyutping",
     // Add other metadata from frontmatter if needed
   };
 }
 
 // --- Page Component ---
-export default async function Page({
-  params,
-}: {
-  params: { locale: string; slug: string[] | undefined };
-}) {
-  const awaitedParams = await params; // Await params
+export default async function Page({ params }: PageAndMetadataProps) {
+  // Use the defined type
+  const awaitedParams = await params; // Await the Promise
   const { locale, slug } = awaitedParams; // Destructure awaited params
 
   // Add validation for locale before reading file
@@ -243,8 +381,26 @@ export default async function Page({
 
   // --- Specific Page Component Rendering ---
   // Check for the specific /yue/jyutping route
-  if (locale === "yue" && slug && slug.length === 1 && slug[0] === "jyutping") {
+  if (slug && slug.length === 1 && slug[0] === "jyutping") {
     // Render the full-width title block first, then the content grid
+    let jyutpingPage: React.ReactNode;
+    if (locale === "yue") {
+      jyutpingPage = <YueJyutpingPage />;
+    } else if (locale === "en") {
+      jyutpingPage = <EnJyutpingPage />;
+    } else if (locale === "vi") {
+      jyutpingPage = <ViJyutpingPage />;
+    } else if (locale === "wuu") {
+      jyutpingPage = <WuuJyutpingPage />;
+    } else if (locale === "nan") {
+      jyutpingPage = <NanJyutpingPage />;
+    } else if (locale === "cmn") {
+      jyutpingPage = <CmnJyutpingPage />;
+    } else {
+      // Fallback or error handling if needed for other locales hitting this path unexpectedly
+      return <div>Jyutping page not available for this locale yet.</div>;
+    }
+
     return (
       <>
         {/* Full-width title block */}
@@ -265,11 +421,12 @@ export default async function Page({
 
           {/* Main content column */}
           <article className="col-span-10 lg:col-span-7">
-            <YueJyutpingPage />
+            {jyutpingPage}
           </article>
 
           {/* TOC column */}
-          <aside className="col-span-2 hidden lg:block sticky top-8 overflow-x-hidden">
+          {/* Removed sticky, top-8, overflow-x-hidden. Sticky is handled inside TOC. */}
+          <aside className="col-span-2 hidden my-8 lg:block">
             <TableOfContents />
           </aside>
         </div>
@@ -277,8 +434,67 @@ export default async function Page({
     );
   }
 
+  // --- Specific Page Component Rendering for /about ---
+  if (slug && slug.length === 1 && slug[0] === "about") {
+    // Use the new generic AboutPage component, passing the locale
+    return (
+      <>
+        <h1 className="mx-auto font-bold text-6xl text-center py-32 text-white bg-[#1678d3]">
+          jyutping.org
+        </h1>
+
+        <article className="container mx-auto max-w-6xl px-4 py-8">
+          <AboutPage locale={locale} />
+        </article>
+      </>
+    );
+  }
+
+  // --- Specific Page Component Rendering for /keyboard ---
+  if (slug && slug.length === 1 && slug[0] === "keyboard") {
+    let KeyboardPageComponent: React.FC | null = null;
+    if (locale === "yue") {
+      KeyboardPageComponent = YueKeyboardPage;
+    } else if (locale === "en") {
+      KeyboardPageComponent = EnKeyboardPage;
+    } else if (locale === "vi") {
+      KeyboardPageComponent = ViKeyboardPage;
+    } else if (locale === "wuu") {
+      KeyboardPageComponent = WuuKeyboardPage;
+    } else if (locale === "nan") {
+      KeyboardPageComponent = NanKeyboardPage;
+    } else if (locale === "cmn") {
+      KeyboardPageComponent = CmnKeyboardPage;
+    }
+
+    if (KeyboardPageComponent) {
+      // Apply container constraints similar to About page
+      return (
+        <div className="container mx-auto max-w-6xl px-4 py-8">
+          <article>
+            <KeyboardPageComponent />
+          </article>
+        </div>
+      );
+    }
+    // Fallback if component not found
+    return <div>Keyboard page not available for this locale yet.</div>;
+  }
+
+  // --- Specific Page Component Rendering for /blog ---
+  if (slug && slug.length === 1 && slug[0] === "blog") {
+    // Use the new generic BlogPage component, passing the locale
+    return (
+      <div className="container mx-auto max-w-4xl px-4 py-8">
+        <article>
+          <BlogPage locale={locale} />
+        </article>
+      </div>
+    );
+  }
+
   // --- Default MDX Content Rendering ---
-  // If it's not a special page handled above, fetch and render MDX content
+  // If it's not an index, jyutping, about, keyboard, or blog page, fetch and render MDX content
   const content = await getPageContent(locale, slug);
 
   if (!content) {
@@ -320,7 +536,11 @@ export default async function Page({
             }}
           />
         </article>
-        <TableOfContents />
+        {/* TOC column for default MDX pages */}
+        <aside className="col-span-1 hidden my-8 lg:block">
+          {/* Use 1 column, ensure visibility */}
+          <TableOfContents />
+        </aside>
       </div>
     </div>
   );

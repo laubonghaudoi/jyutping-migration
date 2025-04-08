@@ -25,8 +25,6 @@ const YueIndexPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-32 items-center">
         <p className="text-center text-3xl md:text-right">點解要學粵拼？</p>
         <ul className="text-lg mx-auto md:col-span-2 space-y-2">
-          {" "}
-          {/* Span 2 cols on medium+ */}
           <li className="flex items-start">
             <IconEar className="mr-2 flex-shrink-0" />{" "}
             <span>學識粵拼可以幫助糾正懶音錯音，規範自己嘅粵語口音。</span>{" "}
@@ -82,7 +80,6 @@ const YueIndexPage: React.FC = () => {
         唔識粵語？
       </span>
 
-      {/* Responsive Language Links: Column on small, Row wrap on medium+ */}
       <div className="flex flex-col md:flex-row md:flex-wrap md:justify-around items-center gap-4 my-12">
         <Link
           href="/cmn"

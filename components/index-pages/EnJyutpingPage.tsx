@@ -1,55 +1,61 @@
-import Alert from "@/components/Alert"; // Assuming Alert component path
-import Audio from "@/components/Audio"; // Assuming Audio component path
-import Chartaudio from "@/components/Chartaudio"; // Assuming Chartaudio component path
 import type React from "react";
+import Alert from "@/components/Alert";
+import Audio from "@/components/Audio";
+import Chartaudio from "@/components/Chartaudio";
 
-const YueJyutpingPage: React.FC = () => {
+const EnJyutpingPage: React.FC = () => {
   return (
     <>
-      <p className="text-lg mb-6 font-semibold">
-        「香港語言學學會粵語拼音方案」，簡稱「粵拼」。
-      </p>
-
       <Chartaudio />
 
-      <Alert title="關於 IPA 轉寫">
+      <Alert title="About IPA transcriptions">
         <p>
-          本頁面所用國際音標轉寫皆係寬式轉寫，錄音數據來源係粵典。詳情請見
-          <a href="#references" className="text-blue-600 hover:underline">
-            參考文獻
+          All IPA transcriptions on this page are phonemic
+          transcriptions，source of the audio data is{" "}
+          <a
+            href="https://words.hk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            粵典 works.hk
           </a>
-          一節。
+          . For further details please see{" "}
+          <a href="#reference" className="text-blue-600 hover:underline">
+            Reference
+          </a>
+          .
         </p>
       </Alert>
 
-      <h2 className="text-3xl font-semibold mt-8 mb-4">1. 聲母表</h2>
+      <h2 className="text-3xl font-semibold mt-8 mb-4">1. Onset</h2>
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
           <thead>
             <tr>
-              <th className="tg-50s5 border p-2"> </th>
-              <th className="border p-2">雙脣音</th>
-              <th className="border p-2">脣齒音</th>
-              <th className="tg-d9jk border p-2">齒齦音</th>
-              <th className="tg-d9jk border p-2">硬腭音</th>
-              <th className="tg-d9jk border p-2">軟腭音</th>
-              <th className="tg-d9jk border p-2">喉音</th>
+              <th className="tg-50s5 border p-2" />
+              <th className="tg-ed5u border p-2">Bilabial</th>
+              <th className="tg-ed5u border p-2">Labio-dental</th>
+              <th className="tg-ed5u border p-2">Alveolar-dental</th>
+              <th className="tg-ed5u border p-2">Palatal</th>
+              <th className="tg-ed5u border p-2">Velar</th>
+              <th className="tg-ed5u border p-2">Glottal</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="tg-99yb border p-2">爆發音</td>
+              <td className="tg-99yb border p-2">Plosive</td>
               <td className="tg-0o7j border p-2">
                 b [p] 巴 <Audio id="baa1" />
                 <br />p [pʰ] 怕 <Audio id="paa3" />
               </td>
-              <td className="tg-0o7j border p-2"> </td>
+              <td className="tg-0o7j border p-2" />
               <td className="tg-aqzh border p-2">
                 d [t] 打 <Audio id="daa2" />
                 <br />t [tʰ] 他 <Audio id="taa1" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
               <td className="tg-aqzh border p-2">
                 g [k] 家 <Audio id="gaa1" />
                 <br />k [kʰ] 卡 <Audio id="kaa1" />
@@ -58,92 +64,93 @@ const YueJyutpingPage: React.FC = () => {
                 <br />
                 kw [kʷʰ] 夸 <Audio id="kwaa1" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
             </tr>
             <tr>
-              <td className="tg-99yb border p-2">塞擦音</td>
-              <td className="tg-0o7j border p-2"> </td>
-              <td className="tg-0o7j border p-2"> </td>
+              <td className="tg-99yb border p-2">Nasal</td>
+              <td className="tg-aqzh border p-2">
+                m [m] 媽 <Audio id="maa1" />
+              </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2">
+                n [n] 那 <Audio id="naa5" />
+              </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2">
+                ng [ŋ] 牙 <Audio id="ngaa4" />
+              </td>
+              <td className="tg-aqzh border p-2" />
+            </tr>
+            <tr>
+              <td className="tg-99yb border p-2">Affricate</td>
+              <td className="tg-0o7j border p-2" />
+              <td className="tg-0o7j border p-2" />
               <td className="tg-aqzh border p-2">
                 z [t͡s~t͡ʃ] 渣 <Audio id="zaa1" />
                 <br />c [t͡sʰ~t͡ʃʰ] 叉 <Audio id="caa1" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
             </tr>
             <tr>
-              <td className="tg-43bj border p-2">鼻音</td>
-              <td className="tg-aqzh border p-2">
-                m [m] 媽 <Audio id="maa1" />
-              </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2">
-                n [n] 那 <Audio id="naa5" />
-              </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2">
-                ng [ŋ] 牙 <Audio id="ngaa4" />
-              </td>
-              <td className="tg-aqzh border p-2"> </td>
-            </tr>
-            <tr>
-              <td className="tg-43bj border p-2">擦音</td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-99yb border p-2">Fricative</td>
+              <td className="tg-aqzh border p-2" />
               <td className="tg-aqzh border p-2">
                 f [f] 花 <Audio id="faa1" />
               </td>
               <td className="tg-aqzh border p-2">
                 s [s] 沙 <Audio id="saa1" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
               <td className="tg-aqzh border p-2">
                 h [h] 蝦 <Audio id="haa1" />
               </td>
             </tr>
             <tr>
-              <td className="tg-43bj border p-2">近音</td>
+              <td className="tg-99yb border p-2">Approximant</td>
               <td className="tg-aqzh border p-2">
                 w [w] 蛙 <Audio id="waa1" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
               <td className="tg-aqzh border p-2">
                 j [j] 也 <Audio id="jaa5" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
             </tr>
             <tr>
-              <td className="tg-43bj border p-2">邊近音</td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-99yb border p-2">Lateral Approximant</td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
               <td className="tg-aqzh border p-2">
                 l [l] 啦 <Audio id="laa1" />
               </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
-              <td className="tg-aqzh border p-2"> </td>
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
+              <td className="tg-aqzh border p-2" />
             </tr>
           </tbody>
         </table>
       </div>
 
       <Alert>
-        <p>零聲母唔用字母做標記，例如「呀」只拼作 aa。</p>
+        Null initial is not represented, e.g. &quot;呀&quot; is only spelt as
+        &quot;aa&quot;.
       </Alert>
 
-      <h2 className="text-3xl font-semibold mt-8 mb-4">2. 鼻音單獨成韻</h2>
+      <h2 className="text-3xl font-semibold mt-8 mb-4">2. Syllabic nasal</h2>
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
           <thead>
             <tr>
-              <th className="border p-2">
+              <th className="tg-8oy2 border p-2">
                 m [m̩] 唔 <Audio id="m4" />
               </th>
-              <th className="border p-2">
+              <th className="tg-8oy2 border p-2">
                 ng [ŋ̩] 吳 <Audio id="ng4" />
               </th>
             </tr>
@@ -151,9 +158,9 @@ const YueJyutpingPage: React.FC = () => {
         </table>
       </div>
 
-      <h2 className="text-3xl font-semibold mt-8 mb-4">3. 韻母</h2>
+      <h2 className="text-3xl font-semibold mt-8 mb-4">3. Final</h2>
 
-      <h3 className="text-2xl font-semibold mt-6 mb-3">3.1 韻腹</h3>
+      <h3 className="text-2xl font-semibold mt-6 mb-3">3.1 Nuclei</h3>
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
@@ -161,29 +168,29 @@ const YueJyutpingPage: React.FC = () => {
             <tr>
               <th className="tg-teg3 border p-2">
                 i [iː] 詩 <Audio id="si1" />
-                <br />i<sub>後接 -ng, -k</sub> [e] 星 <Audio id="sing1" /> 識{" "}
-                <Audio id="sik1" />
+                <br />i<sub>followed by -ng, -k</sub> [e] 星{" "}
+                <Audio id="sing1" /> 識 <Audio id="sik1" />
                 <br />
                 yu [y] 書 <Audio id="syu1" />
               </th>
-              <th className="tg-lnec border p-2"> </th>
+              <th className="tg-lnec border p-2" />
               <th className="tg-teg3 border p-2">
                 u [uː] 夫 <Audio id="fu1" />
-                <br />u<sub>後接 -ng, -k</sub> [o] 風 <Audio id="fung1" /> 福{" "}
-                <Audio id="fuk1" />
+                <br />u<sub>followed by -ng, -k</sub> [o] 風{" "}
+                <Audio id="fung1" /> 福 <Audio id="fuk1" />
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className="tg-teg3 border p-2">
-                e<sub>後接 -i</sub> [e] 四 <Audio id="sei3" />
+                e<sub>followed by -i</sub> [e] 四 <Audio id="sei3" />
                 <br />
                 eo [ɵ] 詢 <Audio id="seon1" />
               </td>
-              <td className="tg-teg3 border p-2"> </td>
+              <td className="tg-teg3 border p-2" />
               <td className="tg-teg3 border p-2">
-                o<sub>後接 -u</sub> [o] 蘇 <Audio id="sou1" />
+                o<sub>followed by -u</sub> [o] 蘇 <Audio id="sou1" />
               </td>
             </tr>
             <tr>
@@ -200,54 +207,54 @@ const YueJyutpingPage: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td className="tg-lnec border p-2"> </td>
+              <td className="tg-lnec border p-2" />
               <td className="tg-teg3 border p-2">
                 aa [aː] 沙 <Audio id="saa1" />
               </td>
-              <td className="tg-teg3 border p-2"> </td>
+              <td className="tg-teg3 border p-2" />
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3 className="text-2xl font-semibold mt-6 mb-3">3.2 韻尾</h3>
+      <h3 className="text-2xl font-semibold mt-6 mb-3">3.2 Coda</h3>
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
-          <thead className="bg-transparent">
-            <tr className="bg-transparent">
-              <th className="border p-2">爆發音</th>
-              <th className="border p-2">
+          <thead>
+            <tr>
+              <th className="tg-ed5u border p-2">Plosive</th>
+              <th className="tg-8oy2 border p-2">
                 p [p̚] 溼 <Audio id="sap1" />
               </th>
-              <th className="border p-2">
+              <th className="tg-8oy2 border p-2">
                 t [t̚] 失 <Audio id="sat1" />
               </th>
-              <th className="border p-2">
+              <th className="tg-8oy2 border p-2">
                 k [k̚] 塞 <Audio id="sak1" />
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border p-2">鼻音</td>
-              <td className="border p-2">
+              <td className="tg-ed5u border p-2">Nasal</td>
+              <td className="tg-8oy2 border p-2">
                 m [m] 心 <Audio id="sam1" />
               </td>
-              <td className="border p-2">
+              <td className="tg-8oy2 border p-2">
                 n [n] 身 <Audio id="san1" />
               </td>
-              <td className="border p-2">
+              <td className="tg-8oy2 border p-2">
                 ng [ŋ] 生 <Audio id="sang1" />
               </td>
             </tr>
             <tr>
-              <td className="border p-2">元音</td>
-              <td className="border p-2"> </td>
-              <td className="border p-2">
+              <td className="tg-ed5u border p-2">Vowel</td>
+              <td className="tg-8oy2 border p-2" />
+              <td className="tg-8oy2 border p-2">
                 i [i] 西 <Audio id="sai1" /> 需 <Audio id="seoi1" />
               </td>
-              <td className="border p-2">
+              <td className="tg-8oy2 border p-2">
                 u [u] 收 <Audio id="sau1" />
               </td>
             </tr>
@@ -255,24 +262,24 @@ const YueJyutpingPage: React.FC = () => {
         </table>
       </div>
 
-      <h3 className="text-2xl font-semibold mt-6 mb-3">3.3 韻母表</h3>
+      <h3 className="text-2xl font-semibold mt-6 mb-3">3.3 Finals Chart</h3>
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300 text-xs">
           <thead>
             <tr>
               <th className="tg-pmgz border p-1" colSpan={2} rowSpan={2}>
-                韻腹
+                Nuclei
               </th>
-              <th className="tg-pmgz border p-1">單元音</th>
+              <th className="tg-pmgz border p-1">Monothong</th>
               <th className="tg-pmgz border p-1" colSpan={2}>
-                複元音
+                Diphthong
               </th>
               <th className="tg-pmgz border p-1" colSpan={3}>
-                鼻音韻尾
+                Nasal coda
               </th>
               <th className="tg-pmgz border p-1" colSpan={3}>
-                爆發音韻尾（入聲韻）
+                Plosive coda
               </th>
             </tr>
             <tr>
@@ -297,7 +304,7 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 i 思 <Audio id="si1" />
               </td>
-              <td className="tg-dgfm border p-1 bg-gray-300"> </td>
+              <td className="tg-dgfm border p-1 bg-gray-300" />
               <td className="tg-ssw7 border p-1">
                 iu 消 <Audio id="siu1" />
               </td>
@@ -307,27 +314,27 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 in 先 <Audio id="sin1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ip 攝 <Audio id="sip3" />
               </td>
               <td className="tg-ssw7 border p-1">
                 it 泄 <Audio id="sit3" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
             </tr>
             <tr>
               <td className="tg-cdar border p-1">[e]</td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-dgfm border p-1 bg-gray-300"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-dgfm border p-1 bg-gray-300" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ing 升 <Audio id="sing1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ik 識 <Audio id="sik1" />
               </td>
@@ -338,18 +345,18 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 yu 書 <Audio id="syu1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 yun 孫 <Audio id="syun1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 yut 雪 <Audio id="syut3" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
             </tr>
             <tr>
               <td className="tg-i8xi border p-1" rowSpan={2}>
@@ -362,30 +369,30 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 ui 灰 <Audio id="fui1" />
               </td>
-              <td className="tg-dgfm border p-1 bg-gray-300"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-dgfm border p-1 bg-gray-300" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 un 歡 <Audio id="fun1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ut 闊 <Audio id="fut3" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
             </tr>
             <tr>
               <td className="tg-cdar border p-1">[o]</td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-dgfm border p-1 bg-gray-300"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-dgfm border p-1 bg-gray-300" />
               <td className="tg-ssw7 border p-1">um</td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ung 風 <Audio id="fung1" />
               </td>
               <td className="tg-ssw7 border p-1">up</td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 uk 福 <Audio id="fuk1" />
               </td>
@@ -395,31 +402,31 @@ const YueJyutpingPage: React.FC = () => {
                 e
               </td>
               <td className="tg-cdar border p-1">[e]</td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ei 四 <Audio id="sei3" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1">en </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1">en</td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
             </tr>
             <tr>
               <td className="tg-cdar border p-1">[ɛː]</td>
               <td className="tg-ssw7 border p-1">
                 e 些 <Audio id="se1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 eu 掉 <Audio id="deu6" />
               </td>
               <td className="tg-ssw7 border p-1">
                 em 舐 <Audio id="lem2" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 eng 鄭 <Audio id="zeng6" />
               </td>
@@ -436,21 +443,21 @@ const YueJyutpingPage: React.FC = () => {
             <tr>
               <td className="tg-i8xi border p-1">eo</td>
               <td className="tg-cdar border p-1">[ɵ]</td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 eoi 需 <Audio id="seoi1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 eon 詢 <Audio id="seon1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 eot 摔 <Audio id="seot1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
             </tr>
             <tr>
               <td className="tg-i8xi border p-1">oe</td>
@@ -458,14 +465,14 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 oe 鋸 <Audio id="goe3" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 oeng 疆 <Audio id="goeng1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-7gzb border p-1 bg-yellow-100">
                 oet <Audio id="oet6" />
               </td>
@@ -478,17 +485,17 @@ const YueJyutpingPage: React.FC = () => {
                 o
               </td>
               <td className="tg-cdar border p-1">[o]</td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ou 好 <Audio id="hou2" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
             </tr>
             <tr>
               <td className="tg-cdar border p-1">[ɔː]</td>
@@ -498,15 +505,15 @@ const YueJyutpingPage: React.FC = () => {
               <td className="tg-ssw7 border p-1">
                 oi 開 <Audio id="hoi1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 on 看 <Audio id="hon3" />
               </td>
               <td className="tg-ssw7 border p-1">
                 ong 康 <Audio id="hong1" />
               </td>
-              <td className="tg-ssw7 border p-1"> </td>
+              <td className="tg-ssw7 border p-1" />
               <td className="tg-ssw7 border p-1">
                 ot 喝 <Audio id="hot3" />
               </td>
@@ -582,35 +589,36 @@ const YueJyutpingPage: React.FC = () => {
 
       <Alert color="secondary">
         <p>
-          <strong>a</strong> 同 <strong>oet</strong> 於 2018 年新增。詳情請睇
+          <strong>a</strong> and <strong>oet</strong> were added in 2018. Please
+          see{" "}
           <a
             href="https://e40058f5-5f04-4db7-8d70-4650bee22b88.filesusr.com/ugd/508b98_8bead2fef24f46e79eba9bc86faf3075.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
           >
-            呢度
-          </a>
-          。
+            here
+          </a>{" "}
+          for further information.
         </p>
       </Alert>
 
-      <h2 className="text-3xl font-semibold mt-8 mb-4">4. 字調</h2>
+      <h2 className="text-3xl font-semibold mt-8 mb-4">4. Tone</h2>
 
       <div className="overflow-x-auto">
         <table className="tg my-4 border border-collapse border-gray-300">
           <thead>
             <tr>
-              <th className="border p-2"> </th>
-              <th className="border p-2">平</th>
-              <th className="border p-2">上</th>
-              <th className="border p-2">去</th>
-              <th className="border p-2">入</th>
+              <th className="tg-ed5u border p-2" />
+              <th className="tg-ed5u border p-2">平</th>
+              <th className="tg-5ye1 border p-2">上</th>
+              <th className="tg-5ye1 border p-2">去</th>
+              <th className="tg-5ye1 border p-2">入</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border p-2">陰</td>
+              <td className="tg-5ye1 border p-2">陰</td>
               <td className="tg-gjbb border p-2">
                 1 [˥] 詩 <Audio id="si1" />
               </td>
@@ -626,7 +634,7 @@ const YueJyutpingPage: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td className="border p-2">陽</td>
+              <td className="tg-5ye1 border p-2">陽</td>
               <td className="tg-gjbb border p-2">
                 4 [˨˩] 時 <Audio id="si4" />
               </td>
@@ -645,15 +653,15 @@ const YueJyutpingPage: React.FC = () => {
       </div>
 
       <Alert>
-        <p>聲調標喺音節後面。</p>
+        <p>Tone marks appear at the end of the syllables.</p>
         <p>
-          <strong>示例：</strong>
-          fu1 （夫），fu2 （虎）, fu3 （副）, fu4 （扶）, fu5 （婦）, fu6 （父）
+          <strong>Examples:</strong>
+          fu1 (夫), fu2 (虎), fu3 (副), fu4 (扶), fu5 (婦), fu6 (父)
         </p>
       </Alert>
 
-      <h2 id="references" className="text-3xl font-semibold mt-8 mb-4">
-        參考文獻
+      <h2 id="reference" className="text-3xl font-semibold mt-8 mb-4">
+        Reference
       </h2>
       <div className="prose dark:prose-invert max-w-none text-sm space-y-2">
         <p>
@@ -685,8 +693,8 @@ const YueJyutpingPage: React.FC = () => {
           </a>
         </p>
         <p>
-          人文電算硏究中心　 2003：「粵語審音配詞字庫」，關子尹
-          主持，“兩文三語敎育網上支援計劃”之工作項目之一，二零零三年一月十二日推出，香港優質敎育基金，存取於二零零七年十一月二十日，
+          人文電算硏究中心 2003：&quot;粵語審音配詞字庫&quot;，關子尹
+          主持，&quot;兩文三語敎育網上支援計劃&quot;之工作項目之一，二零零三年一月十二日推出，香港優質敎育基金，存取於二零零七年十一月二十日，
           <a
             href="http://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/"
             target="_blank"
@@ -702,4 +710,4 @@ const YueJyutpingPage: React.FC = () => {
   );
 };
 
-export default YueJyutpingPage;
+export default EnJyutpingPage;
