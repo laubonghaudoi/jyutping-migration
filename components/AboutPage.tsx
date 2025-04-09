@@ -345,7 +345,20 @@ const translations: Record<string, AboutPageTranslation> = {
         頂面開一个新的 issue 討論抑是代碼 pull request。
       </>
     ),
-    keyboardText: null, // Missing in NAN source
+    keyboardText: (
+      <>
+        安裝使用
+        <Link
+          href="/keyboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:underline mx-1"
+        >
+          粵拼輸入法
+        </Link>
+        打字，以及分享本站。
+      </>
+    ), // Missing in NAN source
     finalParagraph:
       "你若會曉粵語佮其他語言，而且願意共這个網站翻譯做其他語言，請你著寄批聯絡阮，阮真歡迎你的幫助佮貢獻。",
   },
@@ -532,11 +545,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
   const t = translations[locale] || translations.en; // Fallback to English
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Column 1: Acknowledgements */}
-
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
       <div>
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-3xl font-semibold mb-4">
           {t.acknowledgementsTitle}
         </h2>
         <p className="mb-4">{t.acknowledgementsP1}</p>
@@ -546,9 +557,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
         <p className="mb-4">{t.acknowledgementsP5}</p>
       </div>
 
-      {/* Column 2: Development & Contribution */}
       <div>
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-3xl font-semibold mb-4">
           {t.developContributeTitle}
         </h2>
         <p className="mb-4">{t.developContributeP1}</p>

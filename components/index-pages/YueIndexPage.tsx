@@ -13,16 +13,16 @@ import {
 const YueIndexPage: React.FC = () => {
   return (
     <>
-      <h1 className="font-chiron text-8xl my-32 mx-auto text-center">粵拼</h1>
+      <h1 className="font-chiron text-8xl my-16 mx-auto text-center">粵拼</h1>
 
-      <p className="font-chiron leading-relaxed text-4xl my-8 mx-auto text-center">
+      <p className="font-chiron leading-relaxed text-4xl mx-auto text-center">
         簡單合理 易學易用
       </p>
       <p className="font-chiron leading-relaxed text-4xl mx-auto text-center">
         通行粵語拼音方案
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-32 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16 items-center">
         <p className="text-center text-3xl md:text-right">點解要學粵拼？</p>
         <ul className="text-lg mx-auto md:col-span-2 space-y-2">
           <li className="flex items-start">
@@ -44,7 +44,7 @@ const YueIndexPage: React.FC = () => {
         </ul>
       </div>
 
-      <div className="mx-auto text-center text-3xl my-16 block">
+      <div className="mx-auto text-center text-3xl block">
         <span className="inline-flex items-center font-semibold">
           <IconBulb className="mr-2" />
           <span>識粵語就要學粵拼</span>
@@ -56,7 +56,7 @@ const YueIndexPage: React.FC = () => {
         </span>
       </div>
 
-      <div className="flex flex-wrap justify-center my-12">
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/learn" // Removed /index
           className="text-2xl text-center bg-yellow-300 text-neutral-800 hover:bg-yellow-200 px-8 py-4 rounded-md inline-flex items-center"
@@ -65,14 +65,21 @@ const YueIndexPage: React.FC = () => {
           <IconVocabulary className="ml-2 flex-shrink-0" />
         </Link>
       </div>
-      <span className="text-2xl text-center mx-auto block">或者</span>
-      <div className="flex flex-wrap justify-center my-12">
+      <span className="text-2xl text-center mx-auto block">或</span>
+      <div className="flex flex-wrap flex-col justify-center my-8">
         <Link
           href="/jyutping" // Removed /index
-          className="text-2xl text-center bg-lime-400 text-neutral-800 hover:bg-lime-300 px-8 py-4 rounded-md inline-flex items-center"
+          className="w-fit my mx-auto text-2xl text-center bg-lime-400 text-neutral-800 hover:bg-lime-300 px-8 py-4 rounded-md inline-flex items-center"
         >
           睇粵拼方案表
           <IconTable className="ml-2 flex-shrink-0" />
+        </Link>
+        <Link
+          href="/jyutping" // Removed /index
+          className="w-fit my-8 mx-auto text-2xl text-center bg-neutral-800 text-white hover:bg-neutral-700 px-8 py-4 rounded-md inline-flex items-center"
+        >
+          裝粵拼輸入法
+          <IconKeyboard className="ml-2 flex-shrink-0" />
         </Link>
       </div>
 

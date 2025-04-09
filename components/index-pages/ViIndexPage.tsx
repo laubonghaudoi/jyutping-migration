@@ -14,14 +14,14 @@ import {
 const ViIndexPage: React.FC = () => {
   return (
     <>
-      <h1 className="font-chiron text-8xl my-32 mx-auto text-center">粵拼</h1>
+      <h1 className="font-chiron text-8xl my-16 mx-auto text-center">粵拼</h1>
       <p className="font-chiron text-4xl my-8 mx-auto text-center">
         Đơn giản, hợp lý, dễ học, dễ dùng
       </p>
       <p className="font-chiron text-4xl mx-auto text-center">
         Phương pháp phiên âm tiếng Quảng Đông phổ biến
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-32 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16 items-center">
         <p className="text-center text-3xl md:text-right">
           Tại sao học Việt bính?
         </p>{" "}
@@ -49,18 +49,18 @@ const ViIndexPage: React.FC = () => {
           </li>
         </ul>
       </div>
-      <p className="mx-auto text-center text-3xl my-12">
+      <div className="mx-auto text-center text-3xl my-12">
         <span className="inline-flex items-center">
           <IconBulb className="mr-2" />
           <span>Tôi đang học tiếng Quảng Đông và nói tiếng Việt.</span>
         </span>
-      </p>
+      </div>
       <div className="mx-auto text-center text-3xl my-16 block">
         <span className="inline-flex items-center font-semibold">
           <IconArrowDown className="mr-2" />
         </span>
       </div>
-      <div className="flex flex-wrap justify-center my-12">
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/vi/learn"
           className="text-2xl text-center bg-yellow-300 text-neutral-800 hover:bg-yellow-200 px-8 py-4 rounded-md inline-flex items-center"
@@ -70,7 +70,7 @@ const ViIndexPage: React.FC = () => {
         </Link>
       </div>
       <span className="text-2xl text-center my-4 mx-auto block">Hoặc</span>{" "}
-      <div className="flex flex-wrap justify-center my-12">
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/vi/jyutping"
           className="text-2xl text-center bg-lime-400 text-neutral-800 hover:bg-lime-300 px-8 py-4 rounded-md inline-flex items-center"

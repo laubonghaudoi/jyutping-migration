@@ -7,21 +7,22 @@ import {
   IconVocabulary,
   IconTable,
   IconBulb,
+  IconArrowDown,
   // IconArrowRight, // Removed unused icon
 } from "@tabler/icons-react";
 
 const CmnIndexPage: React.FC = () => {
   return (
     <>
-      <h1 className="font-chiron text-8xl my-32 mx-auto text-center">粵拼</h1>
-      <p className="font-chiron leading-relaxed text-4xl my-8 mx-auto text-center">
+      <h1 className="font-chiron text-8xl my-16 mx-auto text-center">粵拼</h1>
+      <p className="font-chiron leading-relaxed text-4xl mx-auto text-center">
         簡單合理 易學易用
       </p>
       <p className="font-chiron leading-relaxed text-4xl mx-auto text-center">
         通行粵語拼音方案
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-32 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16 items-center">
         <p className="text-center text-3xl md:text-right">為什麼要學粵拼？</p>{" "}
         <ul className="text-lg mx-auto md:col-span-2 space-y-2">
           <li className="flex items-start">
@@ -41,14 +42,19 @@ const CmnIndexPage: React.FC = () => {
         </ul>
       </div>
 
-      <p className="mx-auto text-center text-3xl my-12">
+      <div className="mx-auto text-center text-3xl my-12 font-semibold">
         <span className="inline-flex items-center">
           <IconBulb className="mr-2" />
           <span>學粵語就要學粵拼</span>
         </span>
-      </p>
+      </div>
+      <div className="mx-auto text-center text-3xl my-16 block">
+        <span className="inline-flex items-center font-semibold">
+          <IconArrowDown className="mr-2" />
+        </span>
+      </div>
 
-      <div className="flex flex-wrap justify-center my-12">
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/learn"
           className="text-2xl text-center bg-yellow-300 text-neutral-800 hover:bg-yellow-200 px-8 py-4 rounded-md inline-flex items-center"
@@ -58,8 +64,8 @@ const CmnIndexPage: React.FC = () => {
         </Link>
       </div>
 
-      <span className="text-2xl text-center my-4 mx-auto block">或者</span>
-      <div className="flex flex-wrap justify-center my-12">
+      <span className="text-2xl text-center my-4 mx-auto block">或</span>
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/jyutping"
           className="text-2xl text-center bg-lime-400 text-neutral-800 hover:bg-lime-300 px-8 py-4 rounded-md inline-flex items-center"

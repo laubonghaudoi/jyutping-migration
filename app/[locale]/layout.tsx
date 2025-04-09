@@ -1,9 +1,16 @@
-import type { Metadata } from "next";
+"use client"; // Add this directive for using state
+
 import Link from "next/link"; // Import Link component
+import { useState, use } from "react"; // Import useState and use
 // Removed Geist imports as they are unused here
 import "@/app/globals.css"; // Use import alias and correct path
 import LanguageSwitcher from "@/components/LanguageSwitcher"; // Import the switcher
-import { IconBrandGithub, IconBrandX, IconMail } from "@tabler/icons-react";
+import {
+  IconBrandGithub,
+  IconBrandX,
+  IconMail,
+  IconMenu2,
+} from "@tabler/icons-react"; // Add IconMenu2
 import type React from "react"; // Added React import for type usage
 
 // Define a type for the resolved params shape for Layout
@@ -11,26 +18,26 @@ type ResolvedLayoutParams = {
   locale: string;
 };
 
-// Define a type for the props passed to RootLayout
+// Define a type for the props passed to RootLayout - Keep params as Promise
 type LayoutProps = Readonly<{
   children: React.ReactNode;
-  params: Promise<ResolvedLayoutParams>; // Params is a Promise
+  params: Promise<ResolvedLayoutParams>; // Params is a Promise, use() will unwrap it
 }>;
 
-// Note: Metadata might need to be dynamic based on locale later
-export const metadata: Metadata = {
-  title: "Jyutping.org Migration", // Update title
-  description: "Jyutping resources", // Update description
-};
+// Metadata export is removed as it's not allowed in client components.
+// It should be handled in a parent Server Component or page.tsx.
 
-export default async function RootLayout({
-  // Make function async
+export default function RootLayout({
+  // Remove async
   children,
   params,
 }: LayoutProps) {
   // Apply the LayoutProps type here
-  const awaitedParams = await params; // Await the Promise
-  const locale = awaitedParams.locale; // Access locale after awaiting
+  // Unwrap the params Promise using React.use()
+  const resolvedParams = use(params);
+  const locale = resolvedParams.locale; // Access locale from resolved params
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
 
   // --- Navigation Translations ---
   const navTranslations: Record<string, Record<string, string>> = {
@@ -44,12 +51,12 @@ export default async function RootLayout({
       // Add cmn, nan, wuu later
     },
     jyutping: {
-      yue: "LSHK 粵拼方案", // Assuming this is the correct key/title for the root/scheme page
-      en: "LSHK Jyutping Scheme",
+      yue: "粵拼方案", // Assuming this is the correct key/title for the root/scheme page
+      en: "Jyutping Scheme",
       vi: "Việt bính",
-      nan: "LSHK 粵拼方案",
-      wuu: "LSHK 粵拼方案",
-      cmn: "LSHK 粵拼方案",
+      nan: "粵拼方案",
+      wuu: "粵拼方案",
+      cmn: "粵拼方案",
       // Add cmn, nan, wuu later
     },
     blog: {
@@ -90,18 +97,16 @@ export default async function RootLayout({
   }));
 
   // Removed placeholder await
-  // Return a fragment instead of html/body
+  // Return a single div wrapper instead of a fragment
   return (
-    <>
-      {/* Simple Header Placeholder */}
-      <header className="p-4 bg-[#1678d3] text-white">
-        {/* Apply new background and default text color */}
-        <div className="container max-w-8xl mx-auto flex justify-between items-center">
+    <div className="flex flex-col min-h-screen">
+      <header className="relative p-4 bg-[#1678d3] text-white">
+        <div className="flex justify-between items-center px-4">
           <Link href={`/${locale}`} className="text-white hover:opacity-80">
             <span className="text-3xl font-chiron">粵拼</span>
           </Link>
           {/* Navigation Links */}
-          <nav className="hidden md:flex space-x-16">
+          <nav className="hidden md:flex space-x-12">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -112,17 +117,50 @@ export default async function RootLayout({
               </Link>
             ))}
           </nav>
-          {/* Language Switcher */}
-          <LanguageSwitcher
-            locales={["en", "vi", "yue", "cmn", "nan", "wuu"]}
-            defaultLocale={"yue"}
-          />
-        </div>
+          <div className="hidden md:block">
+            <LanguageSwitcher
+              locales={["en", "vi", "yue", "cmn", "nan", "wuu"]}
+              defaultLocale={"yue"}
+            />
+          </div>
+          <button
+            type="button" // Add explicit type for Biome linting
+            className="md:hidden text-white" // Show only on small screens (md and up hidden)
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <IconMenu2 size={24} />
+          </button>
+          {/* Mobile Menu - Moved inside container, conditionally render based on state */}
+          {isMenuOpen && (
+            <div className="bg-[#1678d3] text-white absolute top-full left-0 right-0 z-50 shadow-md md:hidden">
+              <div className="px-8 py-4 flex flex-col space-y-4">
+                {/* Mobile Navigation Links */}
+                <nav className="flex flex-col space-y-2">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={`/${locale}${link.href}`}
+                      className="text-white text-lg hover:opacity-80"
+                      onClick={() => setIsMenuOpen(false)} // Close menu on click
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </nav>
+                {/* Mobile Language Switcher */}
+                <LanguageSwitcher
+                  locales={["en", "vi", "yue", "cmn", "nan", "wuu"]}
+                  defaultLocale={"yue"}
+                />
+              </div>
+            </div>
+          )}
+        </div>{" "}
+        {/* End of simplified header content div */}
       </header>
-
       {/* Main Content Area - Removed container/width constraints */}
       <main className="flex-grow">{children}</main>
-
       {/* Simple Footer Placeholder */}
       <footer className="p-8 bg-gray-600 text-center text-white">
         {/* Copyright text on the first row */}
@@ -167,6 +205,6 @@ export default async function RootLayout({
           </Link>
         </div>
       </footer>
-    </>
+    </div> // Close the wrapper div
   );
 }

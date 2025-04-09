@@ -15,7 +15,7 @@ import Audio from "@/components/Audio";
 import BlogPage from "@/components/BlogPage"; // Import generic Blog page
 import Chartaudio from "@/components/Chartaudio";
 import JyutpingPage from "@/components/JyutpingPage"; // Import generic Jyutping page
-import Ruby from "@/components/Ruby"; // Import the new Ruby component
+import KeyboardPage from "@/components/KeyboardPage"; // Import generic Keyboard page
 import SampleText from "@/components/SampleText"; // Import the SampleText component
 import TableOfContents from "@/components/TableOfContents"; // Import the TOC component
 import CmnIndexPage from "@/components/index-pages/CmnIndexPage";
@@ -24,7 +24,6 @@ import NanIndexPage from "@/components/index-pages/NanIndexPage";
 import ViIndexPage from "@/components/index-pages/ViIndexPage";
 import WuuIndexPage from "@/components/index-pages/WuuIndexPage";
 import YueIndexPage from "@/components/index-pages/YueIndexPage";
-import KeyboardPage from "@/components/KeyboardPage"; // Import generic Keyboard page
 // Import other components like table renderers if created
 
 const contentDir = path.join(process.cwd(), "_content");
@@ -44,7 +43,6 @@ const components = {
   Alert,
   Audio,
   Chartaudio,
-  Ruby, // Add the Ruby component to the mapping
   SampleText, // Add SampleText to the components mapping
   // Re-add basic styling for common elements as a workaround
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -460,7 +458,8 @@ export default async function Page({ params }: PageAndMetadataProps) {
   return (
     <div className="container mx-auto max-w-4xl">
       <div className="grid grid-cols-10 px-4 py-8">
-        <article className="w-full col-span-9">
+        {/* Article takes full width below lg screens, 9/10 on lg+ */}
+        <article className="w-full col-span-10 lg:col-span-9">
           {content.frontmatter.title && slug !== undefined && (
             <h1 className="text-3xl font-bold my-8">
               {content.frontmatter.title}
@@ -490,8 +489,8 @@ export default async function Page({ params }: PageAndMetadataProps) {
             }}
           />
         </article>
-        {/* TOC column for default MDX pages */}
-        <aside className="col-span-1 hidden my-8 lg:block">
+        {/* TOC column for default MDX pages - hidden below lg */}
+        <aside className="hidden lg:block lg:col-span-1 my-8">
           {/* Use 1 column, ensure visibility */}
           <TableOfContents />
         </aside>

@@ -13,13 +13,13 @@ import {
 const EnIndexPage: React.FC = () => {
   return (
     <>
-      <h1 className="font-chiron text-8xl my-32 mx-auto text-center">粵拼</h1>
+      <h1 className="font-chiron text-8xl my-16 mx-auto text-center">粵拼</h1>
 
       <p className="font-chiron text-4xl my-8 mx-auto text-center">
         Jyutping is the standard romanization scheme for Cantonese
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-32 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16 items-center">
         <p className="text-center text-3xl md:text-right">
           Why learn Jyutping?
         </p>
@@ -61,7 +61,7 @@ const EnIndexPage: React.FC = () => {
         </span>
       </div>
 
-      <div className="flex flex-wrap justify-center my-12">
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/en/learn" // Removed /index
           className="text-2xl text-center bg-yellow-300 text-neutral-800 hover:bg-yellow-200 px-8 py-4 rounded-md inline-flex items-center"
@@ -71,7 +71,7 @@ const EnIndexPage: React.FC = () => {
         </Link>
       </div>
       <span className="text-2xl text-center mx-auto block">or</span>
-      <div className="flex flex-wrap justify-center my-12">
+      <div className="flex flex-wrap justify-center my-8">
         <Link
           href="/en/jyutping" // Removed /index
           className="text-2xl text-center bg-lime-400 text-neutral-800 hover:bg-lime-300 px-8 py-4 rounded-md inline-flex items-center"
